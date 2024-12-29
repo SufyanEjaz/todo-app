@@ -1,0 +1,940 @@
+name: 'Task Management'
+description: |-
+
+  APIs for managing tasks.
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/tasks
+    metadata:
+      groupName: 'Task Management'
+      groupDescription: |-
+
+        APIs for managing tasks.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'List all tasks with filtering, sorting, and pagination.'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters:
+      showArchived:
+        name: showArchived
+        description: 'Optional. If true, includes archived tasks. Default: false.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      priority:
+        name: priority
+        description: 'Optional. Filter by priority level (Urgent, High, Normal, Low).'
+        required: false
+        example: High
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      due_date_from:
+        name: due_date_from
+        description: 'date Optional. Filter tasks due from this date (inclusive).'
+        required: false
+        example: '2023-11-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      due_date_to:
+        name: due_date_to
+        description: 'date Optional. Filter tasks due up to this date (inclusive).'
+        required: false
+        example: '2023-11-30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      completed_date_from:
+        name: completed_date_from
+        description: 'date Optional. Filter tasks completed from this date (inclusive).'
+        required: false
+        example: '2023-11-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      completed_date_to:
+        name: completed_date_to
+        description: 'date Optional. Filter tasks completed up to this date (inclusive).'
+        required: false
+        example: '2023-11-30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      archived_date_from:
+        name: archived_date_from
+        description: 'date Optional. Filter tasks archived from this date (inclusive).'
+        required: false
+        example: '2023-11-01'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      archived_date_to:
+        name: archived_date_to
+        description: 'date Optional. Filter tasks archived up to this date (inclusive).'
+        required: false
+        example: '2023-11-30'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      search:
+        name: search
+        description: 'Optional. Search for tasks by title or description.'
+        required: false
+        example: project
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      sort_by:
+        name: sort_by
+        description: 'Optional. Sort by field (title, description, due_date, created_at, completed_at, priority).'
+        required: false
+        example: due_date
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      sort_order:
+        name: sort_order
+        description: 'Optional. Sort order (asc, desc). Default: asc.'
+        required: false
+        example: asc
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      page:
+        name: page
+        description: 'Optional. Page number for pagination. Default: 1.'
+        required: false
+        example: 2
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanQueryParameters:
+      showArchived: false
+      priority: High
+      due_date_from: '2023-11-01'
+      due_date_to: '2023-11-30'
+      completed_date_from: '2023-11-01'
+      completed_date_to: '2023-11-30'
+      archived_date_from: '2023-11-01'
+      archived_date_to: '2023-11-30'
+      search: project
+      sort_by: due_date
+      sort_order: asc
+      page: 2
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "data": [
+              {
+                "id": 1,
+                "title": "My Task",
+                "description": "This is a task description.",
+                "completed": false,
+                "priority": "High",
+                "due_date": "2023-11-10",
+                "tags": [
+                  {
+                    "name": "urgent"
+                  }
+                ],
+                "attachments": [
+                  {
+                    "id": 1,
+                    "file_path": "uploaded_files/1/attachments/sample.jpg"
+                  }
+                ]
+              }
+            ],
+            "links": {
+              "first": "http://example.com/api/tasks?page=1",
+              "last": "http://example.com/api/tasks?page=10",
+              "prev": null,
+              "next": "http://example.com/api/tasks?page=2"
+            },
+            "meta": {
+              "current_page": 1,
+              "from": 1,
+              "last_page": 10,
+              "links": [
+                { "url": null, "label": "&laquo; Previous", "active": false },
+                { "url": "http://example.com/api/tasks?page=1", "label": "1", "active": true },
+                { "url": "http://example.com/api/tasks?page=2", "label": "2", "active": false },
+                { "url": null, "label": "Next &raquo;", "active": false }
+              ],
+              "path": "http://example.com/api/tasks",
+              "per_page": 10,
+              "to": 10,
+              "total": 100
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/tasks
+    metadata:
+      groupName: 'Task Management'
+      groupDescription: |-
+
+        APIs for managing tasks.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Create a new task'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'The title of the task.'
+        required: true
+        example: 'My Task'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'The description of the task.'
+        required: true
+        example: 'This is a task description.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      due_date:
+        name: due_date
+        description: 'The due date for the task.'
+        required: false
+        example: '2023-11-10'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      priority:
+        name: priority
+        description: 'The priority of the task. Must be one of: Urgent, High, Normal, Low.'
+        required: false
+        example: High
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      completed:
+        name: completed
+        description: ''
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: true
+        custom: []
+      archived:
+        name: archived
+        description: 'Optional. Whether the task is archived.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      tags:
+        name: tags
+        description: 'Optional. An array of tags associated with the task.'
+        required: false
+        example:
+          - work
+          - important
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      attachments:
+        name: attachments
+        description: 'Optional. An array of files to attach to the task.'
+        required: false
+        example:
+          - consequatur
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      attachmentsToDelete:
+        name: attachmentsToDelete
+        description: ''
+        required: false
+        example: null
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'tags.*':
+        name: 'tags.*'
+        description: 'A tag associated with the task.'
+        required: false
+        example: important
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      'attachments.*':
+        name: 'attachments.*'
+        description: 'A file to attach to the task. Must be of type jpeg, png, svg, mp4, csv, txt, doc, or docx.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      title: 'My Task'
+      description: 'This is a task description.'
+      due_date: '2023-11-10'
+      priority: High
+      completed: false
+      archived: false
+      tags:
+        - work
+        - important
+      attachments:
+        - consequatur
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "id": 1,
+            "title": "My Task",
+            "description": "This is a task description.",
+            "due_date": "2023-11-10",
+            "priority": "High",
+            "completed": false,
+            "archived": false,
+            "tags": [
+              {
+                "id": 1,
+                "name": "work"
+              },
+              {
+                "id": 2,
+                "name": "important"
+              }
+            ],
+            "attachments": [
+              {
+                "id": 1,
+                "file_path": "uploaded_files/1/attachments/file1.jpeg"
+              }
+            ],
+            "created_at": "2023-11-06T00:00:00.000000Z",
+            "updated_at": "2023-11-06T00:00:00.000000Z"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "message": "The given data was invalid.",
+            "errors": {
+              "title": ["The title field is required."],
+              "description": ["The description field is required."]
+            }
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/tasks/{task}'
+    metadata:
+      groupName: 'Task Management'
+      groupDescription: |-
+
+        APIs for managing tasks.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Show a single task'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      task:
+        name: task
+        description: 'The task.'
+        required: true
+        example: illum
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      task: illum
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "title": "My Task",
+            "description": "This is a task description.",
+            "due_date": "2023-11-10",
+            "priority": "High",
+            "completed": false
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "error": "Task not found"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/tasks/{task}'
+    metadata:
+      groupName: 'Task Management'
+      groupDescription: |-
+
+        APIs for managing tasks.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Update a task'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      task:
+        name: task
+        description: 'The task.'
+        required: true
+        example: eaque
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      task: eaque
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'The title of the task.'
+        required: false
+        example: 'Updated Task Title'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      description:
+        name: description
+        description: 'The description of the task.'
+        required: false
+        example: 'Updated task description.'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      due_date:
+        name: due_date
+        description: 'The due date for the task.'
+        required: false
+        example: '2023-11-15'
+        type: date
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      priority:
+        name: priority
+        description: 'The priority of the task. Must be one of: Urgent, High, Normal, Low.'
+        required: false
+        example: Normal
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      completed:
+        name: completed
+        description: 'Optional. Whether the task is completed.'
+        required: false
+        example: true
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      archived:
+        name: archived
+        description: 'Optional. Whether the task is archived.'
+        required: false
+        example: false
+        type: boolean
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: true
+        custom: []
+      tags:
+        name: tags
+        description: 'Optional. An array of tags to associate with the task.'
+        required: false
+        example:
+          - work
+          - urgent
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      attachments:
+        name: attachments
+        description: 'Optional. An array of files to attach to the task.'
+        required: false
+        example:
+          - dolor
+        type: 'string[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      attachmentsToDelete:
+        name: attachmentsToDelete
+        description: 'The <code>id</code> of an existing record in the attachments table.'
+        required: false
+        example:
+          - 8
+        type: 'integer[]'
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      'tags.*':
+        name: 'tags.*'
+        description: 'A tag to associate with the task.'
+        required: false
+        example: urgent
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      'attachments.*':
+        name: 'attachments.*'
+        description: 'A file to attach to the task. Must be of type jpeg, png, svg, mp4, csv, txt, doc, or docx.'
+        required: false
+        example: null
+        type: file
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      title: 'Updated Task Title'
+      description: 'Updated task description.'
+      due_date: '2023-11-15'
+      priority: Normal
+      completed: true
+      archived: false
+      tags:
+        - work
+        - urgent
+      attachments:
+        - dolor
+      attachmentsToDelete:
+        - 8
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "title": "Updated Task Title",
+            "description": "Updated task description.",
+            "due_date": "2023-11-15",
+            "priority": "Normal",
+            "completed": true,
+            "archived": false,
+            "tags": [
+              {
+                "id": 1,
+                "name": "work"
+              },
+              {
+                "id": 2,
+                "name": "urgent"
+              }
+            ],
+            "attachments": [
+              {
+                "id": 1,
+                "file_path": "uploaded_files/1/attachments/file1.jpeg"
+              }
+            ],
+            "created_at": "2023-11-06T00:00:00.000000Z",
+            "updated_at": "2023-11-06T00:00:00.000000Z"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "error": "Task not found or update failed"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/tasks/{task}'
+    metadata:
+      groupName: 'Task Management'
+      groupDescription: |-
+
+        APIs for managing tasks.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Delete a task'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      task:
+        name: task
+        description: 'The task.'
+        required: true
+        example: aspernatur
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      task: aspernatur
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: 'null'
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "error": "Task not found or deletion failed"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/tasks/{task}/toggleComplete'
+    metadata:
+      groupName: 'Task Management'
+      groupDescription: |-
+
+        APIs for managing tasks.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Mark a task as complete'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      task:
+        name: task
+        description: 'The task.'
+        required: true
+        example: nulla
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      task: nulla
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "title": "My Task",
+            "completed": true,
+            "completed_at": "2023-11-06T12:00:00Z"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "error": "Task not found"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/tasks/{task}/toggleArchiveRestore'
+    metadata:
+      groupName: 'Task Management'
+      groupDescription: |-
+
+        APIs for managing tasks.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Archive a task'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      task:
+        name: task
+        description: 'The task.'
+        required: true
+        example: enim
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+      id:
+        name: id
+        description: 'The ID of the task.'
+        required: true
+        example: 1
+        type: integer
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanUrlParameters:
+      task: enim
+      id: 1
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "id": 1,
+            "title": "My Task",
+            "archived": true,
+            "archived_at": "2023-11-06T12:00:00Z"
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 404
+        content: |-
+          {
+            "error": "Task not found"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []

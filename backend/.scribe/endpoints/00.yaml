@@ -1,0 +1,224 @@
+name: Authentication
+description: |-
+
+  APIs for managing user authentication.
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/register
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        APIs for managing user authentication.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Register a new user'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'The name of the user.'
+        required: true
+        example: 'John Doe'
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      email:
+        name: email
+        description: 'The email address of the user.'
+        required: true
+        example: john@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: 'The password of the user. Must be at least 8 characters.'
+        required: true
+        example: password123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      confirm_password:
+        name: confirm_password
+        description: 'Password confirmation. Must match the password.'
+        required: true
+        example: eius
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      name: 'John Doe'
+      email: john@example.com
+      password: password123
+      confirm_password: eius
+    fileParameters: []
+    responses:
+      -
+        status: 201
+        content: |-
+          {
+            "user": {
+              "id": 1,
+              "name": "John Doe",
+              "email": "john@example.com"
+            },
+            "token": "1|abcdef123456..."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 422
+        content: |-
+          {
+            "name": ["The name field is required."],
+            "email": ["The email field is required."],
+            "password": ["The password must be at least 8 characters."]
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        APIs for managing user authentication.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Login user'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'The email of the user.'
+        required: true
+        example: john@example.com
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+      password:
+        name: password
+        description: 'The password of the user.'
+        required: true
+        example: password123
+        type: string
+        enumValues: []
+        exampleWasSpecified: true
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      email: john@example.com
+      password: password123
+    fileParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+            "user": {
+              "id": 1,
+              "name": "John Doe",
+              "email": "john@example.com"
+            },
+            "token": "1|abcdef123456..."
+          }
+        headers: []
+        description: ''
+        custom: []
+      -
+        status: 401
+        content: |-
+          {
+            "message": "Invalid credentials"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
+  -
+    httpMethods:
+      - POST
+    uri: api/logout
+    metadata:
+      groupName: Authentication
+      groupDescription: |-
+
+        APIs for managing user authentication.
+      subgroup: ''
+      subgroupDescription: ''
+      title: 'Logout user'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    cleanUrlParameters: []
+    queryParameters: []
+    cleanQueryParameters: []
+    bodyParameters: []
+    cleanBodyParameters: []
+    fileParameters: []
+    responses:
+      -
+        status: 204
+        content: |-
+          {
+            "message": "Logged out successfully"
+          }
+        headers: []
+        description: ''
+        custom: []
+    responseFields: []
+    auth: []
+    controller: null
+    method: null
+    route: null
+    custom: []
